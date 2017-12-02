@@ -1,0 +1,103 @@
+<html>
+
+<head>
+	<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" href="json-viewer/json-viewer.css">
+	<script src="json-viewer/json-viewer.js"></script>
+<head>
+	<style>
+		table tr td {
+			border: 1px solid silver;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+	<script>
+		/* Helper objects */
+		var htmlResult;
+		var parserPlugIns = {
+
+			$$: function(params, data) {
+				try {
+					var result = eval(params[0]);
+					if(typeof result != 'undefined')
+					 return result;
+					else
+					 return ''
+				}
+				catch(e){
+					//global.registry.logger.log("[gemini\/templateBuilder\/parserPlugIns.js]\nMissing parameter `" + params[0] + "`", 4);
+					return ''
+				}
+			}
+		}
+
+		/* config object */
+		var _cfg={
+			openTag : "{{",
+			closeTag : "}}",
+			singleTags: ['$$']
+		}
+
+		/* example data object */
+		var data = {
+		    users: [
+		    	{name: "John", age: 24},
+		    	{name: "Jim", age: 25},
+		    	{name: "Sam", age:43}
+		    ],
+			rows: [	[1, 2],
+					[3, 4],
+					[5, 6]
+					],
+			cells: [1,2,3,4],
+			version: "2.1"
+		}
+
+	</script>
+</head>
+<body>
+
+	<div id='code'></div>
+	<textarea id='textArea'>
+	</textarea>
+
+
+	<br><br><br><br>
+	<div class="json-container"></div>
+
+	<script>
+
+var jsonObject = {
+	one: "<hr>TEST",
+	two: [
+		1,
+		2,
+		{
+			objOne: 1,
+			objTwo: 2,
+			objThree: [1,2,3],
+			objFour:[
+				{
+					testOne: "123",
+					testTwo: 222
+				},
+				{
+					testOneOne: "123",
+					testTwoTwo: 222
+				}				
+			]
+		}
+	]
+}
+
+
+
+		JsonView.showJSON( jsonObject , $('.json-container') );
+	</script>
+</body>
+</html>
