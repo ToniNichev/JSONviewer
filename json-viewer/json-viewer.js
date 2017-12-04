@@ -18,11 +18,11 @@ var JsonView = {
 				htmlText += 	returnMarkupFor.key(key);
 			else
 				htmlText += 	'<b> </b>';
-				htmlText += 	`<h2>(${nodeType})</h2>`;
+				htmlText += 	`<h2 class='systemText'>(${nodeType})</h2>`;
 				htmlText += 	'<br>';
-				htmlText += 	'<span class="open-wrap-tag">' + (nodeType == 'array' ? '[' : '{') + '</span>';
+				htmlText += 	'<span class="open-wrap-tag systemText">' + (nodeType == 'array' ? '[' : '{') + '</span>';
 				htmlText += 	`<div class='object-container'>${paramsStr}</div>`
-				htmlText += 	'<span class="close-wrap-tag">' + (nodeType == 'array' ? ']' : '}') + '</span>';
+				htmlText += 	'<span class="close-wrap-tag systemText">' + (nodeType == 'array' ? ']' : '}') + '</span>';
 				htmlText += `</div>`
 			return htmlText;
 		}
@@ -75,7 +75,7 @@ var JsonView = {
 
 		function createEscapeHTMLContainer() {
 			var div = document.createElement("div");
-			div.innerHTML = "Hello####################";
+			div.innerHTML = "";
 			div.id = "JSONviewer_EscapeHTMLContainer"
 			$('body')[0].appendChild(div);
 		}

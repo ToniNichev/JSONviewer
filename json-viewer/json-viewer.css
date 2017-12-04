@@ -57,40 +57,9 @@
 }
 
 
-.json-container h2 {
-	display: inline-block;
-	margin: 0px;
+.json-container .systemText {
+	color: blue;
 }
-
-.json-container h3 {
-	padding-left: 0;
-	margin: 0px;
-}
-
-
-.json-container span p {
-	padding-left: 29px;
-	margin:0;
-}
-
-
-
-.json-container .stringParam {
-	padding-left: 19px;
-}
-
-.json-container .array-wrapper > span {
-	display: inline-block;
-	padding-left:50px;
-}
-
-
-
-.json-container .object-wrapper-inner {
-	display:block;
-	padding-left:20px;
-}
-
 /* 
 	######################
 	Node container 
