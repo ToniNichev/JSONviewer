@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="json-viewer/json-viewer.css">
+        <link rel="stylesheet" href="json-text-beautifier/json-text-beautifier.css">
+
+        <script src="json-viewer/json-viewer.js"></script>
+        <script src="json-text-beautifier/json-text-beautifier.js"></script>
+        <script src="contentEditable/contentEditable.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    </head>
+    <body>
+        <div id='wraper'>
+            <div contenteditable=true id='textArea' class="json-text-beautifier"></div>
+            <div class="json-container"></div>
+        </div>
+        <script>
+            
+            var _contentEditable = new contentEditable();
+            _contentEditable.init($('#textArea'), function() {
+                jsonBeautifier.beautify($('#textArea'), jsonObject);
+            });    
+
+
+            var jsonObject = {};
+            $('#textArea').keyup(function() {
+               let txt = $(this).val();
+               updateJSONtree(txt);
+            });
+
+            function updateJSONtree(sourceText) {
+                let txt = $('#textArea')[0].textContent;
+                try {
+                    eval("jsonObject = " + txt);
+
+                    JsonView.showJSON(jsonObject, $('.json-container'));                        
+                }
+                catch(e) {
+                    console.log(">> Cannot convert string to JSON object.\n")
+                    console.log(txt);
+                    //var r = e.stack.toString().split('<anonymous>:');
+                    //var rr = r[1].split(')');
+                    //var errorPos = 15 - 
+                    console.log(e)
+                }            
+            }
+
+            //$('#textArea')[0].textContent = '{one: 1, two: "<hr>", three:[1,2,3, {one:1,two:2} ]}';
+            $('#textArea')[0].textContent = '{one: 1, two: {three: 3, threeOne:{one:1, two:2, arrayTest:[1,2,3,{one:1, two:2}] } }}';
+            updateJSONtree();
+            jsonBeautifier.beautify($('#textArea'), jsonObject);
+        </script>
+    </body>
+</html>

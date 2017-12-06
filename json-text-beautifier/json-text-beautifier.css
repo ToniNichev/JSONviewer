@@ -1,0 +1,19 @@
+.json-text-beautifier {
+
+}
+
+.json-text-beautifier .node-wrapper {
+	padding-left: 15px;
+}
+
+.json-text-beautifier .key {
+	color: green;
+}
+
+.json-text-beautifier .val {
+	color: blue;
+}
+
+.json-text-beautifier .error {
+	color: red;
+}
