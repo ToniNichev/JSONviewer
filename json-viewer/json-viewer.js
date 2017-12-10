@@ -6,12 +6,12 @@ var JsonView = {
 
 		let returnMarkupFor = {
 			key: (keyStr) => {
-				return `<b>${keyStr}:</b>`;				
+				return `<b>${keyStr}:</b>`;
 			},
-		}		
-		
-		function nodeContainer(key, paramsStr, nodeType) {			
-			var htmlText = ``;						
+		}
+
+		function nodeContainer(key, paramsStr, nodeType) {
+			var htmlText = ``;
 				htmlText += `<div class='node-container' data-height='' data-open='true'>`;
 				htmlText += 	`<h1 class='triangle-down'></h1>`
 			if(key != null)
@@ -65,8 +65,8 @@ var JsonView = {
 				Object.keys(param).forEach(function(_key,index) {
 					var _param = param[_key];
 					_paramData += iterator(_key, _param);
-				});	
-				htmlText += nodeContainer(key, _paramData, 'object');						
+				});
+				htmlText += nodeContainer(key, _paramData, 'object');
 			}
 
 			//htmlText += `</div>`;
@@ -74,23 +74,25 @@ var JsonView = {
 		}
 
 		function createEscapeHTMLContainer() {
-			var div = document.createElement("div");
-			div.innerHTML = "";
-			div.id = "JSONviewer_EscapeHTMLContainer"
-			$('body')[0].appendChild(div);
+			if ($('#JSONviewer_EscapeHTMLContainer').length == 0) {
+				var div = document.createElement("div");
+				div.innerHTML = "";
+				div.id = "JSONviewer_EscapeHTMLContainer"
+				$('body')[0].appendChild(div);
+			}
 		}
-		createEscapeHTMLContainer();	
+		createEscapeHTMLContainer();
 
 
-		let result = iterator('root', obj);		
+		let result = iterator('root', obj);
 		container.html(result);
-	
+
 
 		// set up nodes height
 		$('h1').each(function(){
  			let divWrapper = $(this).parent();
 			let height = divWrapper.height();
-			divWrapper.attr('data-height', height); 			
+			divWrapper.attr('data-height', height);
 		});
 
 		// attach the events
@@ -104,7 +106,7 @@ var JsonView = {
 
 			let height = divWrapper.attr('data-height');
 			divWrapper.css('max-height', height + 'px');
-			divWrapper.attr('data-open', 'true');			
+			divWrapper.attr('data-open', 'true');
 			divWrapper.find('span').removeClass('divWrapper');
 
 			var h2 = divWrapper.find('h2')[0]

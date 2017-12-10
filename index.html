@@ -47,9 +47,9 @@
             }
 
             //$('#textArea')[0].textContent = '{one: 1, two: "<hr>", three:[1,2,3, {one:1,two:2} ]}';
-            $('#textArea')[0].textContent = '{one: 1, two: {three: 3, threeOne:{one:1, two:2, arrayTest:[1,2,3,{one:1, two:2}] } }}';
+            $('#textArea')[0].textContent = '{one: 1, two: {three: 3, threeOne:{one:1,two:2,arrayTest:[1,2,3,{one:1,two:2}] } }}';
             updateJSONtree();
-            jsonBeautifier.beautify($('#textArea'), jsonObject);
+            jsonBeautifier.beautify($('#textArea'), {openTags:['{', '\\['], closeTags: ['}'] });
         </script>
     </body>
 </html>

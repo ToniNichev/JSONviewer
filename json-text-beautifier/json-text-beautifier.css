@@ -1,5 +1,6 @@
 .json-text-beautifier {
-
+	white-space: pre-wrap;
+	font-size: 12px;
 }
 
 .json-text-beautifier .node-wrapper {

@@ -11,9 +11,37 @@ function contentEditable() {
 		this.Object = Object;
 		var self = this;
 
+		this.Object.keydown(function(event) {
+			console.log(event.keyCode);
+			if(event.keyCode == 9){
+
+				event.preventDefault();
+				var range = window.getSelection().getRangeAt(0);
+
+				var tabNode = document.createTextNode("\u00a0\u00a0\u00a0\u00a0");
+				range.insertNode(tabNode);
+
+				range.setStartAfter(tabNode);
+				range.setEndAfter(tabNode); 		        
+				return;
+			}else if(event.keyCode == 13){
+
+				event.preventDefault();
+				var range = window.getSelection().getRangeAt(0);
+
+				var tabNode = document.createTextNode("\n");
+				range.insertNode(tabNode);
+
+				range.setStartAfter(tabNode);
+				range.setEndAfter(tabNode); 		        
+				return;
+			}			
+		});
+
 		this.Object.keyup(function(event) {
+
 			if(self.ignoreNonAlpabeticKeys) {
-				if(event.keyCode == 224 || event.keyCode == 13 || event.keyCode == 8 || event.keyCode==46 || (event.keyCode >= 37 && event.keyCode <= 40)) {
+				if(event.keyCode == 9 || event.keyCode == 224 || event.keyCode == 13 || event.keyCode == 8 || event.keyCode==46 || (event.keyCode >= 37 && event.keyCode <= 40)) {
 					// return if ctl, return, arrows, del, delete
 					return;
 				}
